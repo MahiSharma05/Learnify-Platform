@@ -1,0 +1,42 @@
+server:
+  port: 8082   # Course Service runs on port 8082
+
+spring:
+  application:
+    name: course-service   # MUST match Eureka + Gateway (lb://course-service)
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/course_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: Dimple@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update     # Auto create/update tables
+    show-sql: true         # 🪵 Show SQL queries in console
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  # DevTools (auto restart on code changes)
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+#  Swagger / OpenAPI configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html   #  Swagger UI URL
+
+#  Eureka (Service Registration)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
