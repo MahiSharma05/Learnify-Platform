@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        # Auth Service
+        - id: auth-service
+          uri: lb://auth-service  # lb:use Eureka load balancer
+          predicates:
+            - Path=/api/auth/**
+
+        # Course Service
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/api/courses/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: learnify-super-secret-key-must-be-at-least-32-characters-long
