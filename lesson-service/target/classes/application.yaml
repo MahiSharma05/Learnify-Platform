@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: lesson-service        # Name used by Eureka and API Gateway routing
+
+  datasource:
+    # lesson_db is a separate database — each service owns its own DB
+    url: jdbc:mysql://localhost:3306/lesson_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update          # Auto-creates lessons and lesson_resources tables
+    show-sql: true              # Print SQL in console (helpful for debugging)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
