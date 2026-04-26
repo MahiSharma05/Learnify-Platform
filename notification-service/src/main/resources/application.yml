@@ -1,0 +1,68 @@
+server:
+  port: 8089   # Notification Service
+
+spring:
+  application:
+    name: notification-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/notification_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: Dimple@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  # ── JavaMail (Gmail SMTP) ────────────────────────────────────────────────────
+  # Replace with your Gmail credentials or SMTP provider
+  # For Gmail: enable "App Passwords" in Google Account settings
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: your-email@gmail.com        # ← Replace with your Gmail
+    password: your-app-password           # ← Replace with Gmail App Password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        debug: false  # Set to true to debug email issues
+
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: learnify-super-secret-key-must-be-at-least-32-characters-long
+
+# Notification settings
+notification:
+  email:
+    enabled: true          # Set to false to disable actual email sending (dev mode)
+    from: noreply@learnify.com
+    from-name: Learnify Platform
+  # Max notifications to keep per user (older ones auto-cleaned)
+  max-per-user: 100
