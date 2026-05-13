@@ -28,7 +28,7 @@ public class NotificationController {
     @PostMapping
     public ResponseEntity<NotificationResponse> sendNotification(
             @Valid @RequestBody NotificationRequest request,
-            @RequestHeader("X-User-Role") String role) {
+            @RequestHeader(value = "X-User-Role", required = false) String role) {
 
         // Other services call this without user context — allow all
         // In production: add an internal service API key check here
@@ -57,7 +57,11 @@ public class NotificationController {
      */
     @GetMapping("/my")
     public ResponseEntity<List<NotificationResponse>> getMyNotifications(
-            @RequestHeader("X-User-Id") Long userId) {
+            @RequestHeader(value = "X-User-Id", required = false) Long userId) {
+
+        if (userId == null) {
+            return ResponseEntity.ok(List.of()); // ✅ empty list
+        }
 
         return ResponseEntity.ok(notificationService.getNotificationsByUser(userId));
     }
@@ -82,7 +86,11 @@ public class NotificationController {
      */
     @GetMapping("/unread-count")
     public ResponseEntity<Map<String, Long>> getUnreadCount(
-            @RequestHeader("X-User-Id") Long userId) {
+            @RequestHeader(value = "X-User-Id", required = false) Long userId) {
+
+        if (userId == null) {
+            return ResponseEntity.ok(Map.of("count", 0L)); // ✅ prevent crash
+        }
 
         return ResponseEntity.ok(
                 Map.of("count", notificationService.getUnreadCount(userId)));

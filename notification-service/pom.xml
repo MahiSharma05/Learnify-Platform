@@ -15,7 +15,7 @@
     <groupId>com.learnify</groupId>
     <artifactId>notification-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <n>notification-service</n>
+    <name>notification-service</name>
     <description>Learnify Notification Service — In-App and Email Alerts</description>
 
     <properties>
@@ -100,6 +100,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Spring AMQP + RabbitMQ (for @RabbitListener consumers) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+        <!-- Jackson Java 8 Date/Time support (needed for LocalDateTime in RabbitMQ JSON messages) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
 
     </dependencies>

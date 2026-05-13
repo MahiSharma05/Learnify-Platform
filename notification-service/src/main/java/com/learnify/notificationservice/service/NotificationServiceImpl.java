@@ -17,8 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-
+import lombok.extern.slf4j.Slf4j;
 @Service
+@Slf4j
 public class NotificationServiceImpl implements NotificationService {
 
     private final NotificationRepository notificationRepository;
@@ -62,16 +63,18 @@ public class NotificationServiceImpl implements NotificationService {
         Notification saved = notificationRepository.save(notification);
 
         // Optionally send email
-        if (request.isSendEmail() && request.getUserEmail() != null) {
+        if (request.isSendEmail()
+                && emailEnabled
+                && request.getUserEmail() != null
+                && !request.getUserEmail().isBlank()) {
             try {
                 sendEmailAlert(request.getUserEmail(), request.getTitle(),
                         buildEmailBody(request.getTitle(), request.getMessage()));
                 saved.setEmailSent(true);
                 notificationRepository.save(saved);
             } catch (Exception e) {
-                // Log but don't fail — in-app notification already saved
-                System.err.println("[NotificationService] Email send failed for user "
-                        + request.getUserEmail() + ": " + e.getMessage());
+                log.error("[NotificationService] Email send failed for user {}: {}",
+                        request.getUserEmail(), e.getMessage());
             }
         }
 
@@ -154,7 +157,8 @@ public class NotificationServiceImpl implements NotificationService {
             helper.setFrom(fromEmail, fromName);
             helper.setTo(toEmail);
             helper.setSubject(subject);
-            helper.setText(body, true); // true = HTML
+            String htmlBody = buildEmailBody(subject, body);
+            helper.setText(htmlBody, true); // true = HTML
 
             mailSender.send(message);
         } catch (MessagingException | java.io.UnsupportedEncodingException e) {

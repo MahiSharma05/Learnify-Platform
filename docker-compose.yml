@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  # ─────────────────────────────────────────────
+  # Redis — Caching + Quiz Timer State
+  #  Port  : 6379
+  # ─────────────────────────────────────────────
+  redis:
+    image: redis:7.2-alpine
+    container_name: learnify-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server
+    volumes:
+      - redis-data:/data
+
+  # ─────────────────────────────────────────────
+  # RabbitMQ (guest/guest - matches your config)
+  # ─────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: learnify-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    # ❌ No environment → uses default guest/guest
+
+volumes:
+  redis-data:

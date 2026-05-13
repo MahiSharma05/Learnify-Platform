@@ -19,14 +19,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
-  # ── JavaMail (Gmail SMTP) ────────────────────────────────────────────────────
-  # Replace with your Gmail credentials or SMTP provider
-  # For Gmail: enable "App Passwords" in Google Account settings
+  # ── JavaMail (Gmail SMTP) ────────────────────────────────────────────────
   mail:
     host: smtp.gmail.com
     port: 587
-    username: your-email@gmail.com        # ← Replace with your Gmail
-    password: your-app-password           # ← Replace with Gmail App Password
+    username: maahi.shaarma52002@gmail.com
+    password: biladnobgegnnptd
     properties:
       mail:
         smtp:
@@ -34,7 +32,27 @@ spring:
           starttls:
             enable: true
             required: true
-        debug: false  # Set to true to debug email issues
+        debug: false
+
+  # ── RabbitMQ Configuration ───────────────────────────────────────────────
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    connection-timeout: 60000
+
+    listener:
+      simple:
+        auto-startup: true
+        acknowledge-mode: auto
+        retry:
+          enabled: true
+          initial-interval: 1000
+          max-attempts: 3
+          multiplier: 2
+          max-interval: 10000
+        default-requeue-rejected: false
 
   devtools:
     restart:
@@ -58,11 +76,17 @@ eureka:
 jwt:
   secret: learnify-super-secret-key-must-be-at-least-32-characters-long
 
-# Notification settings
+# ── Custom Queue Names (Optional, if using ${...}) ──────────────────────────
+rabbit:
+  queue:
+    enrollment: learnify.enrollment.queue
+    payment: learnify.payment.queue
+    quiz: learnify.quiz.queue
+
+# ── Notification Settings ──────────────────────────────────────────────────
 notification:
   email:
-    enabled: true          # Set to false to disable actual email sending (dev mode)
-    from: noreply@learnify.com
+    enabled: true
+    from: maahi.shaarma52002@gmail.com
     from-name: Learnify Platform
-  # Max notifications to keep per user (older ones auto-cleaned)
   max-per-user: 100
