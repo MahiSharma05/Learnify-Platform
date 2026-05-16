@@ -9,9 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder   // ✅ NEW
-@NoArgsConstructor   // ✅ NEW
-@AllArgsConstructor  // ✅ NEW
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NotificationRequest {
 
     // Target recipient

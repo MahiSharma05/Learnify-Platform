@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = authHeader.substring(7);
 
             try {
-                // ✅ 1. Validate token FIRST
+                // 1. Validate token FIRST
                 if (jwtUtil.isTokenValid(token)) {
 
                     String email = jwtUtil.extractEmail(token);
@@ -56,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
 
             } catch (Exception e) {
-                // ❗ Important: prevent crash
+                // Important: prevent crash
                 System.out.println("JWT Error: " + e.getMessage());
             }
         }

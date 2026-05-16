@@ -42,4 +42,7 @@ public class User {
     public void setCreatedAt() {
         this.createdAt = LocalDateTime.now();
     }
+
+    @Column(nullable = false)
+    private boolean emailVerified = false;
 }

@@ -13,12 +13,36 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update       # auto-creates/updates tables on startup
+      ddl-auto: update
     show-sql: true
+
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
+  # =========================
+  # EMAIL CONFIGURATION
+  # =========================
+  mail:
+    host: smtp.gmail.com
+    port: 587
+
+    # Your Gmail
+    username: learnify852@gmail.com
+
+    # Google App Password (NOT normal Gmail password)
+    password: ihnkdcgducqphkev
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  # =========================
+  # GOOGLE OAUTH2
+  # =========================
   security:
     oauth2:
       client:
@@ -26,18 +50,27 @@ spring:
           google:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
+
             scope:
               - email
               - profile
+
             redirect-uri: http://localhost:8081/login/oauth2/code/google
 
+# =========================
+# EUREKA
+# =========================
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
   instance:
     prefer-ip-address: true
 
+# =========================
+# JWT
+# =========================
 jwt:
   secret: learnify-super-secret-key-must-be-at-least-32-characters-long
-  expiration-ms: 86400000    # 24 hours
+  expiration-ms: 86400000

@@ -35,4 +35,6 @@ public interface AuthService {
     void deleteUserByAdmin(Long id);
 
     Long getUserIdByEmail(String email);
+
+    void sendOtp(String email);
 }

@@ -183,9 +183,11 @@ public class QuizServiceImpl implements QuizService {
             throw new UnauthorizedException("Only instructors or admins can delete questions");
         }
 
-        questionRepository.findById(questionId)
+        Question question = questionRepository.findById(questionId)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Question not found with id: " + questionId));
+
+        questionRepository.delete(question);
 
         questionRepository.deleteById(questionId);
     }

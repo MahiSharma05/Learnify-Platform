@@ -65,7 +65,7 @@ public class QuizTimerService {
                 .build();
 
         // TTL = quiz time limit + grace period
-        Duration ttl = Duration.ofSeconds(timeLimitSeconds + graceSeconds);
+        Duration ttl = Duration.ofSeconds((long) timeLimitSeconds + graceSeconds);
         redisTemplate.opsForValue().set(key, state, ttl);
 
         log.info("[QuizTimer] Timer started — attemptId={} quizId={} student={} limit={}s",

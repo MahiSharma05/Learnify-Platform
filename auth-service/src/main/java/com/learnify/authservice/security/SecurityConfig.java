@@ -43,12 +43,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         // Public endpoints
-                        .requestMatchers(
-                                "/api/auth/register",
-                                "/api/auth/login",
-                                "/oauth2/**",
-                                "/login/**"
-                        ).permitAll()
+//                        .requestMatchers(
+//                                "/api/auth/register",
+//                                "/api/auth/login",
+//                                "/oauth2/**",
+//                                "/login/**"
+//                        ).permitAll()
+                                .requestMatchers(
+                                        "/api/auth/register",
+                                        "/api/auth/login",
+                                        "/api/auth/verify-otp",
+                                        "/api/auth/resend-otp",
+                                        "/oauth2/**",
+                                        "/login/**"
+                                ).permitAll()
 
                         // Protected endpoints
                         .requestMatchers("/api/auth/profile/**").authenticated()

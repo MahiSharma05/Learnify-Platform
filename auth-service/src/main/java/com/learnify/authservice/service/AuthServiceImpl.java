@@ -22,6 +22,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private OtpService otpService;
+
     @Override
     public AuthResponse register(RegisterRequest request) {
 
@@ -30,27 +33,63 @@ public class AuthServiceImpl implements AuthService {
         }
 
         User user = new User();
+
         user.setFullName(request.getFullName());
+
         user.setEmail(request.getEmail());
-        user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+
+        user.setPasswordHash(
+                passwordEncoder.encode(request.getPassword())
+        );
+
         user.setRole(request.getRole().toUpperCase());
+
         user.setProvider("local");
+
+        user.setEmailVerified(false);
 
         userRepository.save(user);
 
-        // ✅ Generate token
-        String token = jwtUtil.generateToken(user.getEmail(), user.getRole(), user.getId());
+        otpService.generateAndSendOtp(user.getEmail());
 
-        // ✅ RETURN FULL DATA (VERY IMPORTANT)
         return new AuthResponse(
-                token,
+                null,
                 user.getId(),
                 user.getFullName(),
                 user.getEmail(),
                 user.getRole(),
-                user.getProfilePicUrl()
+                "OTP sent to email"
         );
     }
+//    @Override
+//    public AuthResponse register(RegisterRequest request) {
+//
+//        if (userRepository.existsByEmail(request.getEmail())) {
+//            throw new RuntimeException("Email already registered");
+//        }
+//
+//        User user = new User();
+//        user.setFullName(request.getFullName());
+//        user.setEmail(request.getEmail());
+//        user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+//        user.setRole(request.getRole().toUpperCase());
+//        user.setProvider("local");
+//
+//        userRepository.save(user);
+//
+//        // ✅ Generate token
+//        String token = jwtUtil.generateToken(user.getEmail(), user.getRole(), user.getId());
+//
+//        // RETURN FULL DATA (VERY IMPORTANT)
+//        return new AuthResponse(
+//                token,
+//                user.getId(),
+//                user.getFullName(),
+//                user.getEmail(),
+//                user.getRole(),
+//                user.getProfilePicUrl()
+//        );
+//    }
 
     @Override
     public AuthResponse login(LoginRequest request) {
@@ -61,6 +100,10 @@ public class AuthServiceImpl implements AuthService {
         // Compare raw password with bcrypt hash
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
             throw new RuntimeException("Invalid email or password");
+        }
+
+        if (!user.isEmailVerified()) {
+            throw new RuntimeException("Please verify email first");
         }
 
         String token = jwtUtil.generateToken(user.getEmail(), user.getRole(), user.getId());
@@ -145,5 +188,11 @@ public class AuthServiceImpl implements AuthService {
         return userRepository.findByEmail(email)
                 .map(User::getId) // or getUserId()
                 .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    @Override
+    public void sendOtp(String email) {
+
+        otpService.generateAndSendOtp(email);
     }
 }

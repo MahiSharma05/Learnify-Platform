@@ -39,6 +39,48 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.AssessmentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AssessmentServiceApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AttemptRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CertificateControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CourseControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CourseRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CourseServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CustomOAuth2UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DiscussionServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EnrollmentControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EnrollmentEventListenerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EnrollmentRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EnrollmentServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonResourceRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LessonServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NotificationControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NotificationRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.NotificationServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentEventListenerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PaymentServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressServiceApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgressServiceImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuestionRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuizEventListenerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuizRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuizTimerControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReplyControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ReplyRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResourceControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubscriptionRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ThreadControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ThreadRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -62,13 +104,13 @@
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sony/IdeaProjects/Learnify-Platform&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sony/IdeaProjects/Learnify-Platform/payment-service/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
@@ -76,6 +118,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sony\IdeaProjects\Learnify-Platform\payment-service\src\main\resources" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -92,7 +139,7 @@
             <map>
               <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="AssessmentServiceApplication" value="STOPPED" />
-              <entry key="AuthServiceApplication" value="FAILED" />
+              <entry key="AuthServiceApplication" value="STOPPED" />
               <entry key="CourseServiceApplication" value="STOPPED" />
               <entry key="DiscussionServiceApplication" value="STOPPED" />
               <entry key="EnrollmentServiceApplication" value="STOPPED" />
@@ -107,7 +154,67 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EnrollmentServiceApplication">
+  <component name="RunManager" selected="JUnit.NotificationControllerTest">
+    <configuration name="DiscussionServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="discussion-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learnify.discussionservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.learnify.discussionservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.learnify.discussionservice.service.DiscussionServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="notification-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learnify.notificationservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.learnify.notificationservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.learnify.notificationservice.controller.NotificationControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReplyRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="discussion-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learnify.discussionservice.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.learnify.discussionservice.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.learnify.discussionservice.repository.ReplyRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ThreadRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="discussion-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.learnify.discussionservice.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.learnify.discussionservice.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.learnify.discussionservice.repository.ThreadRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.learnify.gateway.ApiGatewayApplication" />
@@ -128,15 +235,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="auth-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.learnify.authservice.AuthServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.learnify.authservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -209,6 +310,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.DiscussionServiceImplTest" />
+      <item itemvalue="JUnit.NotificationControllerTest" />
+      <item itemvalue="JUnit.ReplyRepositoryTest" />
+      <item itemvalue="JUnit.ThreadRepositoryTest" />
+      <item itemvalue="Spring Boot.AuthServiceApplication" />
       <item itemvalue="Spring Boot.AssessmentServiceApplication" />
       <item itemvalue="Spring Boot.CourseServiceApplication" />
       <item itemvalue="Spring Boot.DiscussionServiceApplication" />
@@ -220,12 +326,14 @@
       <item itemvalue="Spring Boot.PaymentServiceApplication" />
       <item itemvalue="Spring Boot.ProgressServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
-      <item itemvalue="Spring Boot.AuthServiceApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NotificationControllerTest" />
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Spring Boot.AuthServiceApplication" />
+        <item itemvalue="JUnit.DiscussionServiceImplTest" />
+        <item itemvalue="JUnit.ThreadRepositoryTest" />
+        <item itemvalue="JUnit.ReplyRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -272,11 +380,25 @@
       <workItem from="1778344886894" duration="7686000" />
       <workItem from="1778602438936" duration="3413000" />
       <workItem from="1778649084464" duration="830000" />
-      <workItem from="1778651423169" duration="8775000" />
+      <workItem from="1778651423169" duration="33351000" />
+      <workItem from="1778769982640" duration="36574000" />
+      <workItem from="1778863200966" duration="14277000" />
+      <workItem from="1778907222043" duration="29318000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/assessment-service/src/test/java/com/learnify/assessmentservice/repository/QuestionRepositoryTest.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

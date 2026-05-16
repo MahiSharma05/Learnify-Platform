@@ -7,12 +7,13 @@ import com.learnify.authservice.entity.User;
 import com.learnify.authservice.repository.UserRepository;
 import com.learnify.authservice.security.JwtUtil;
 import com.learnify.authservice.service.AuthService;
+import com.learnify.authservice.service.OtpService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
+import com.learnify.authservice.dto.VerifyOtpRequest;
 import java.util.Map;
 
 @RestController
@@ -27,6 +28,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private OtpService otpService;
 
     // POST /api/auth/register
     @PostMapping("/register")
@@ -136,5 +140,26 @@ public class AuthController {
     @GetMapping("/user-id")
     public ResponseEntity<Long> getUserIdByEmail(@RequestParam String email) {
         return ResponseEntity.ok(authService.getUserIdByEmail(email));
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<String> verifyOtp(
+            @Valid @RequestBody VerifyOtpRequest request) {
+
+        otpService.verifyOtp(
+                request.getEmail(),
+                request.getOtp()
+        );
+
+        return ResponseEntity.ok("Email verified successfully");
+    }
+
+    @PostMapping("/resend-otp")
+    public ResponseEntity<String> resendOtp(
+            @RequestParam String email) {
+
+        otpService.generateAndSendOtp(email);
+
+        return ResponseEntity.ok("OTP resent successfully");
     }
 }
