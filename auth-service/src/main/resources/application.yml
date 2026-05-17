@@ -1,13 +1,13 @@
 server:
-  port: 8081
+  port: ${PORT:8081}                             #8081
 
 spring:
   application:
     name: auth-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root
+    url: ${DB_URL}         #jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username:  ${DB_USERNAME}               #root
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -28,10 +28,10 @@ spring:
     port: 587
 
     # Your Gmail
-    username: learnify852@gmail.com
+    username: ${MAIL_USERNAME}                                   #learnify852@gmail.com
 
     # Google App Password (NOT normal Gmail password)
-    password: ihnkdcgducqphkev
+    password: ${MAIL_PASSWORD}                  #ihnkdcgducqphkev
 
     properties:
       mail:
@@ -55,7 +55,7 @@ spring:
               - email
               - profile
 
-            redirect-uri: http://localhost:8081/login/oauth2/code/google
+            redirect-uri: https://learnify-api-gateway.onrender.com/login/oauth2/code/google          #http://localhost:8081/login/oauth2/code/google
 
 # =========================
 # EUREKA
@@ -63,7 +63,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://learnify-eureka.onrender.com/eureka            #defaultZone: http://localhost:8761/eureka/
 
   instance:
     prefer-ip-address: true
@@ -72,5 +72,5 @@ eureka:
 # JWT
 # =========================
 jwt:
-  secret: learnify-super-secret-key-must-be-at-least-32-characters-long
+  secret: ${JWT_SECRET}               #learnify-super-secret-key-must-be-at-least-32-characters-long
   expiration-ms: 86400000

@@ -129,7 +129,7 @@ public class AuthController {
         return ResponseEntity.ok(
                 new AuthResponse(
                         token,
-                        user.getId(),              // ✅ FIX
+                        user.getId(),
                         user.getFullName(),
                         user.getEmail(),
                         user.getRole(),

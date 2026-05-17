@@ -60,9 +60,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 System.out.println("JWT Error: " + e.getMessage());
             }
         }
-
         filterChain.doFilter(request, response);
     }
-
-
 }

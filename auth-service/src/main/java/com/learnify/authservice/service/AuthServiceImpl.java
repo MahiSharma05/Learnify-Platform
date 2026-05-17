@@ -61,35 +61,6 @@ public class AuthServiceImpl implements AuthService {
                 "OTP sent to email"
         );
     }
-//    @Override
-//    public AuthResponse register(RegisterRequest request) {
-//
-//        if (userRepository.existsByEmail(request.getEmail())) {
-//            throw new RuntimeException("Email already registered");
-//        }
-//
-//        User user = new User();
-//        user.setFullName(request.getFullName());
-//        user.setEmail(request.getEmail());
-//        user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
-//        user.setRole(request.getRole().toUpperCase());
-//        user.setProvider("local");
-//
-//        userRepository.save(user);
-//
-//        // ✅ Generate token
-//        String token = jwtUtil.generateToken(user.getEmail(), user.getRole(), user.getId());
-//
-//        // RETURN FULL DATA (VERY IMPORTANT)
-//        return new AuthResponse(
-//                token,
-//                user.getId(),
-//                user.getFullName(),
-//                user.getEmail(),
-//                user.getRole(),
-//                user.getProfilePicUrl()
-//        );
-//    }
 
     @Override
     public AuthResponse login(LoginRequest request) {

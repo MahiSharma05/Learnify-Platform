@@ -34,21 +34,15 @@ public class SecurityConfig {
                 // Disable CSRF for APIs
                 .csrf(csrf -> csrf.disable())
 
-                // ✅ Stateless (VERY IMPORTANT for JWT)
+                // Stateless (VERY IMPORTANT for JWT)
                 .sessionManagement(sm -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
-                // ✅ Authorization rules
+                // Authorization rules
                 .authorizeHttpRequests(auth -> auth
 
                         // Public endpoints
-//                        .requestMatchers(
-//                                "/api/auth/register",
-//                                "/api/auth/login",
-//                                "/oauth2/**",
-//                                "/login/**"
-//                        ).permitAll()
                                 .requestMatchers(
                                         "/api/auth/register",
                                         "/api/auth/login",
@@ -65,7 +59,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
-                // 🔥 CRITICAL FIX: Prevent redirect to Google for API calls
+                // CRITICAL FIX: Prevent redirect to Google for API calls
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) -> {
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -81,7 +75,7 @@ public class SecurityConfig {
                         .successHandler(oAuth2LoginSuccessHandler)
                 );
 
-        // ✅ Add JWT filter
+        // Add JWT filter
         http.addFilterBefore(jwtAuthenticationFilter,
                 UsernamePasswordAuthenticationFilter.class);
 
