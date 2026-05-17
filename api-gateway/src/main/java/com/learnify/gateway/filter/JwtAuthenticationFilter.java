@@ -22,24 +22,24 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
         String method = exchange.getRequest().getMethod().name();
         String path   = exchange.getRequest().getURI().getPath();
-        // ✅ 1. Allow CORS preflight requests
+        // Allow CORS preflight requests
         if (method.equals("OPTIONS")) {
             return chain.filter(exchange);
         }
 
         // ================= PUBLIC ENDPOINTS =================
 
-        // ✅ 2. Allow OAuth2 endpoints (VERY IMPORTANT)
+        // Allow OAuth2 endpoints (VERY IMPORTANT)
         if (path.startsWith("/oauth2")) {
             return chain.filter(exchange);
         }
 
-        // ✅ 3. Allow auth APIs
+        // Allow auth APIs
         if (path.startsWith("/api/auth")) {
             return chain.filter(exchange);
         }
 
-        // ✅ 4. Allow course browsing (GET only)
+        // Allow course browsing (GET only)
         if (method.equals("GET") && path.startsWith("/api/courses")) {
             return chain.filter(exchange);
         }
@@ -50,7 +50,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
-        // ❌ No token OR invalid format
+        // No token OR invalid format
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
@@ -59,7 +59,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         // Extract token
         String token = authHeader.substring(7);
 
-        // ❌ Invalid token
+        // Invalid token
         if (!jwtUtil.isTokenValid(token)) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
@@ -71,7 +71,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         String role   = jwtUtil.extractRole(token);
         Long   userId = jwtUtil.extractUserId(token);
 
-        // 🔥 DEBUG (optional)
+        // DEBUG
         System.out.println("Gateway EMAIL: " + email);
         System.out.println("Gateway ROLE: " + role);
         System.out.println("Request PATH: " + path);
@@ -79,7 +79,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
         // ================= ROLE-BASED ACCESS CONTROL =================
 
-        // 🔒 ADMIN ONLY APIs
+        // ADMIN ONLY APIs
         if (path.contains("/approve") || path.contains("/reject") || path.contains("/pending")) {
             if (!isAdmin(role)) {
                 exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
@@ -87,7 +87,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             }
         }
 
-        // 🔒 CREATE COURSE → only INSTRUCTOR
+        // CREATE COURSE → only INSTRUCTOR
         if (method.equals("POST") && path.startsWith("/api/courses")) {
             if (!isInstructor(role)) {
                 exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
@@ -95,7 +95,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             }
         }
 
-        // 🔒 UPDATE / DELETE → INSTRUCTOR or ADMIN
+        // UPDATE / DELETE → INSTRUCTOR or ADMIN
         if ((method.equals("PUT") || method.equals("DELETE")) &&
                 path.startsWith("/api/courses")) {
 
