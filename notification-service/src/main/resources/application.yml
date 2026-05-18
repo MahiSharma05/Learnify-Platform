@@ -1,0 +1,92 @@
+server:
+  port: 8089   # Notification Service
+
+spring:
+  application:
+    name: notification-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/notification_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: Dimple@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  # ── JavaMail (Gmail SMTP) ────────────────────────────────────────────────
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: maahi.shaarma52002@gmail.com
+    password: biladnobgegnnptd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        debug: false
+
+  # ── RabbitMQ Configuration ───────────────────────────────────────────────
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    connection-timeout: 60000
+
+    listener:
+      simple:
+        auto-startup: true
+        acknowledge-mode: auto
+        retry:
+          enabled: true
+          initial-interval: 1000
+          max-attempts: 3
+          multiplier: 2
+          max-interval: 10000
+        default-requeue-rejected: false
+
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: learnify-super-secret-key-must-be-at-least-32-characters-long
+
+# ── Custom Queue Names (Optional, if using ${...}) ──────────────────────────
+rabbit:
+  queue:
+    enrollment: learnify.enrollment.queue
+    payment: learnify.payment.queue
+    quiz: learnify.quiz.queue
+
+# ── Notification Settings ──────────────────────────────────────────────────
+notification:
+  email:
+    enabled: true
+    from: maahi.shaarma52002@gmail.com
+    from-name: Learnify Platform
+  max-per-user: 100
